@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advocate &amp; Legal Consultant | Jamnagar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c2b33;
+    --parchment:#f4eee0;
+    --parchment-deep:#ece2cc;
+    --brass:#a9802f;
+    --seal:#8a3324;
+    --sage:#5e6f5b;
+    --line: rgba(28,43,51,0.16);
+    --max: 980px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'Source Serif 4', serif;
+    font-size:18px;
+    line-height:1.6;
+  }
+  h1,h2,h3{
+    font-family:'Playfair Display', serif;
+    margin:0;
+    color:var(--ink);
+  }
+  .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--brass);
+  }
+  a{ color: var(--seal); }
+  .wrap{ max-width:var(--max); margin:0 auto; padding:0 28px; }
+
+  /* ---------- Header / Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--parchment);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    max-width:var(--max); margin:0 auto;
+  }
+  .brand{
+    font-family:'Playfair Display', serif;
+    font-size:22px; font-weight:700;
+    letter-spacing:0.02em;
+  }
+  .brand small{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--brass); font-weight:400; margin-top:4px;
+  }
+  nav.links{ display:flex; gap:28px; }
+  nav.links a{
+    color:var(--ink); text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+    border-bottom:1px solid transparent;
+    padding-bottom:4px;
+    transition:border-color .2s;
+  }
+  nav.links a:hover{ border-color:var(--brass); }
+  .nav-toggle{ display:none; background:none; border:1px solid var(--line); padding:8px 12px; font-family:'IBM Plex Mono',monospace; cursor:pointer; color:var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:90px 0 70px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{ display:grid; grid-template-columns:1.4fr 1fr; gap:60px; align-items:end; }
+  .hero h1{
+    font-size:54px; line-height:1.15; font-weight:700;
+    max-width:620px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--seal); font-weight:500;
+  }
+  .hero .lede{
+    margin-top:22px; max-width:520px; font-size:19px; color:#3a4a52;
+  }
+  .hero .cta-row{ margin-top:34px; display:flex; gap:16px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    padding:14px 26px; border:1px solid var(--ink);
+    text-decoration:none; color:var(--ink);
+    transition: background .2s, color .2s;
+  }
+  .btn.primary{ background:var(--ink); color:var(--parchment); }
+  .btn.primary:hover{ background:var(--seal); border-color:var(--seal); }
+  .btn:not(.primary):hover{ background:var(--ink); color:var(--parchment); }
+
+  /* Seal / signature element */
+  .seal{
+    justify-self:end;
+    width:220px; height:220px;
+    border-radius:50%;
+    border:2px solid var(--seal);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    flex-shrink:0;
+  }
+  .seal::before{
+    content:"";
+    position:absolute; inset:14px;
+    border:1px dashed var(--seal);
+    border-radius:50%;
+    opacity:.6;
+  }
+  .seal-text{
+    font-family:'IBM Plex Mono', monospace;
+    text-align:center; color:var(--seal);
+    font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
+    line-height:2.1;
+  }
+  .seal-text .big{
+    display:block; font-family:'Playfair Display', serif;
+    font-size:30px; letter-spacing:0; font-style:italic; margin:6px 0;
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:80px 0; border-bottom:1px solid var(--line); }
+  .section-head{
+    display:flex; align-items:baseline; gap:18px; margin-bottom:48px;
+    flex-wrap:wrap;
+  }
+  .section-head .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px; color:var(--brass); letter-spacing:0.1em;
+  }
+  .section-head h2{ font-size:34px; }
+  .section-head .rule{
+    flex:1; height:1px; background:var(--line); min-width:60px;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px;
+  }
+  .about-grid .credentials{
+    border-left:2px solid var(--brass); padding-left:24px;
+  }
+  .credentials dl{ display:grid; grid-template-columns:1fr; gap:18px; margin:0; }
+  .credentials dt{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--brass); }
+  .credentials dd{ margin:4px 0 0; font-size:17px; }
+  .placeholder-note{
+    margin-top:28px; font-size:14px; color:var(--sage);
+    font-family:'IBM Plex Mono', monospace; letter-spacing:0.02em;
+    border:1px dashed var(--sage); padding:14px 16px; border-radius:2px;
+  }
+
+  /* ---------- Practice Areas ---------- */
+  .docket{
+    display:grid; gap:0;
+    border:1px solid var(--line);
+  }
+  .docket-row{
+    display:grid; grid-template-columns:90px 1fr 1fr;
+    border-bottom:1px solid var(--line);
+    padding:28px 26px;
+    gap:26px;
+    transition:background .2s;
+  }
+  .docket-row:last-child{ border-bottom:none; }
+  .docket-row:hover{ background:var(--parchment-deep); }
+  .docket-row .sec-no{
+    font-family:'Playfair Display', serif; font-style:italic;
+    font-size:30px; color:var(--brass);
+  }
+  .docket-row h3{ font-size:22px; margin-bottom:6px; }
+  .docket-row .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:11px;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--seal);
+    display:inline-block; margin-bottom:8px;
+  }
+  .docket-row p{ margin:0; color:#3a4a52; font-size:16px; }
+
+  /* ---------- Services ---------- */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--parchment); padding:32px 26px;
+  }
+  .service-card .label{ display:block; margin-bottom:14px; }
+  .service-card h3{ font-size:20px; margin-bottom:10px; }
+  .service-card p{ margin:0; font-size:15px; color:#3a4a52; }
+
+  /* ---------- FAQ ---------- */
+  .faq-item{
+    border-bottom:1px solid var(--line);
+  }
+  .faq-item:first-child{ border-top:1px solid var(--line); }
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none;
+    cursor:pointer; padding:22px 0; display:flex; justify-content:space-between;
+    align-items:center; gap:20px;
+    font-family:'Playfair Display', serif; font-size:20px; color:var(--ink);
+  }
+  .faq-q .plus{
+    font-family:'IBM Plex Mono', monospace; font-size:20px; color:var(--brass);
+    flex-shrink:0; transition:transform .25s;
+  }
+  .faq-item.open .faq-q .plus{ transform:rotate(45deg); }
+  .faq-a{
+    max-height:0; overflow:hidden; transition:max-height .3s ease;
+  }
+  .faq-a-inner{ padding:0 0 22px; font-size:16px; color:#3a4a52; max-width:680px; }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px;
+  }
+  .info-block{ margin-bottom:30px; }
+  .info-block .label{ display:block; margin-bottom:8px; }
+  .info-block p{ margin:0; font-size:18px; }
+  .hours-table{ width:100%; border-collapse:collapse; font-size:16px; }
+  .hours-table td{ padding:8px 0; border-bottom:1px solid var(--line); }
+  .hours-table td:last-child{ text-align:right; font-family:'IBM Plex Mono', monospace; font-size:14px; }
+
+  form{ display:flex; flex-direction:column; gap:18px; }
+  .field label{
+    display:block; font-family:'IBM Plex Mono', monospace; font-size:12px;
+    letter-spacing:0.14em; text-transform:uppercase; color:var(--brass); margin-bottom:8px;
+  }
+  .field input, .field textarea, .field select{
+    width:100%; padding:12px 14px; font-family:'Source Serif 4', serif;
+    font-size:16px; border:1px solid var(--ink); background:var(--parchment);
+    color:var(--ink); resize:vertical;
+  }
+  .field input:focus, .field textarea:focus, .field select:focus{
+    outline:2px solid var(--brass); outline-offset:1px;
+  }
+  form .btn{ align-self:flex-start; cursor:pointer; }
+  .form-note{ font-size:13px; color:var(--sage); font-family:'IBM Plex Mono', monospace; }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:40px 0; text-align:center;
+    font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--sage);
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px){
+    body{ font-size:17px; }
+    .hero .wrap{ grid-template-columns:1fr; gap:40px; }
+    .hero h1{ font-size:38px; }
+    .seal{ width:150px; height:150px; justify-self:start; }
+    .seal-text{ font-size:9px; }
+    .seal-text .big{ font-size:22px; }
+    .about-grid, .contact-grid{ grid-template-columns:1fr; gap:36px; }
+    .docket-row{ grid-template-columns:50px 1fr; }
+    .docket-row .sec-no{ font-size:22px; }
+    .docket-row > div:nth-child(3){ grid-column:1/-1; }
+    .services-grid{ grid-template-columns:1fr; }
+    nav.links{ display:none; flex-direction:column; gap:14px; position:absolute; top:100%; left:0; right:0; background:var(--parchment); padding:20px 28px; border-bottom:1px solid var(--line); }
+    nav.links.open{ display:flex; }
+    .nav-toggle{ display:block; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">Yajuvendrasinh Parmar<small>Advocate &amp; Legal Consultant</small></div>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#practice">Practice Areas</a>
+      <a href="#services">Services</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">MENU</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="label">Jamnagar, Gujarat &mdash; Office of Advocate</p>
+      <h1>Steady counsel for <em>criminal, family,</em> cheque-bounce &amp; electricity disputes.</h1>
+      <p class="lede">Clear advice, careful drafting, and representation you can rely on &mdash; from first consultation to final hearing.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#contact">Book a Consultation</a>
+        <a class="btn" href="#practice">View Practice Areas</a>
+      </div>
+    </div>
+    <div class="seal">
+      <div class="seal-text">
+        Advocate
+        <span class="big">at Law</span>
+        Jamnagar &middot; Gujarat
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">Sec. 1</span>
+      <h2>About</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>
+          With a focused practice across criminal defence, family matters, negotiable
+          instruments (cheque dishonour) cases, and electricity-related disputes,
+          this office provides practical, client-first legal guidance to individuals
+          and families across Jamnagar and the surrounding region.
+        </p>
+        <p>
+          Every matter &mdash; whether a contested hearing or a routine consultation &mdash;
+          is handled with the same attention to detail, clear communication, and
+          honest assessment of where a case stands and what to expect next.
+        </p>
+        <p>
+          Advocate Yajuvendrasinh Parmar has been practicing since February 2020 with
+          R R Raval &amp; Associates in Jamnagar, focusing on family law, negotiable
+          instruments (cheque dishonour), and criminal legal matters. He holds an
+          LL.B. from Harivandna College and a B.Sc. in Mathematics from Saurashtra
+          University.
+        </p>
+        <p>
+          Before turning to law, he spent over a decade in technical and field roles
+          &mdash; including chemist positions handling water and fuel analysis for
+          industrial clients, disaster relief coordination after the Kashmir
+          earthquake and Tamil Nadu tsunami, and financial advisory work in stocks,
+          insurance, and mutual funds. This background brings a grounded,
+          detail-oriented approach to documentation, technical matters, and working
+          directly with people through difficult situations.
+        </p>
+      </div>
+      <div class="credentials">
+        <dl>
+          <div>
+            <dt>Advocate Since</dt>
+            <dd>Feb 2020 &mdash; R R Raval &amp; Associates</dd>
+          </div>
+          <div>
+            <dt>LL.B.</dt>
+            <dd>Harivandna College, 2020</dd>
+          </div>
+          <div>
+            <dt>Languages</dt>
+            <dd>Gujarati, Hindi, English</dd>
+          </div>
+          <div>
+            <dt>Based In</dt>
+            <dd>Patel Colony, Jamnagar, Gujarat</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="practice">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">Sec. 2</span>
+      <h2>Practice Areas</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="docket">
+      <div class="docket-row">
+        <div class="sec-no">01</div>
+        <div>
+          <span class="tag">Negotiable Instruments Act</span>
+          <h3>Cheque Bounce &amp; Recovery</h3>
+        </div>
+        <p>
+          Filing and defending complaints under Section 138 of the Negotiable
+          Instruments Act, drafting demand notices, and pursuing recovery of
+          dishonoured cheque amounts through the appropriate courts.
+        </p>
+      </div>
+      <div class="docket-row">
+        <div class="sec-no">02</div>
+        <div>
+          <span class="tag">Criminal Law</span>
+          <h3>Criminal Defence &amp; Bail</h3>
+        </div>
+        <p>
+          Representation in criminal complaints, FIR-related matters, bail
+          applications, and trial proceedings before magistrate and sessions
+          courts &mdash; with a focus on protecting the rights of the accused at every stage.
+        </p>
+      </div>
+      <div class="docket-row">
+        <div class="sec-no">03</div>
+        <div>
+          <span class="tag">Family Law</span>
+          <h3>Divorce, Maintenance &amp; Custody</h3>
+        </div>
+        <p>
+          Guidance and representation in divorce, judicial separation, maintenance,
+          child custody, and domestic dispute matters &mdash; handled with discretion
+          and sensitivity to the family's circumstances.
+        </p>
+      </div>
+      <div class="docket-row">
+        <div class="sec-no">04</div>
+        <div>
+          <span class="tag">Electricity Act &mdash; Special</span>
+          <h3>Electricity Disputes</h3>
+        </div>
+        <p>
+          Handling disputes relating to electricity theft allegations, billing
+          objections, disconnection notices, and proceedings before special
+          courts constituted under the Electricity Act.
+        </p>
+      </div>
+      <div class="docket-row">
+        <div class="sec-no">05</div>
+        <div>
+          <span class="tag">Documentation &amp; Registration</span>
+          <h3>Deed Drafting &amp; Registrar Services</h3>
+        </div>
+        <p>
+          Drafting of sale deeds, divorce deeds, and other agreements, along with
+          assistance in completing registration formalities at the Sub-Registrar's office.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">Sec. 3</span>
+      <h2>Services Offered</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="label">01</span>
+        <h3>Legal Consultation</h3>
+        <p>One-on-one meetings to understand your matter, explain your options, and outline realistic next steps.</p>
+      </div>
+      <div class="service-card">
+        <span class="label">02</span>
+        <h3>Drafting &amp; Notices</h3>
+        <p>Legal notices, replies, agreements, affidavits, and applications drafted accurately and on time.</p>
+      </div>
+      <div class="service-card">
+        <span class="label">03</span>
+        <h3>Court Representation</h3>
+        <p>Appearance and representation before district courts, magistrate courts, and special tribunals.</p>
+      </div>
+      <div class="service-card">
+        <span class="label">04</span>
+        <h3>Bail &amp; Urgent Matters</h3>
+        <p>Prompt assistance with bail applications and time-sensitive criminal matters.</p>
+      </div>
+      <div class="service-card">
+        <span class="label">05</span>
+        <h3>Mediation &amp; Settlement</h3>
+        <p>Support in negotiating out-of-court settlements in family and recovery disputes where possible.</p>
+      </div>
+      <div class="service-card">
+        <span class="label">06</span>
+        <h3>Documentation Review</h3>
+        <p>Review of contracts, notices, and official correspondence before you respond or sign.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">Sec. 4</span>
+      <h2>Frequently Asked Questions</h2>
+      <span class="rule"></span>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q"><span>What should I bring to my first consultation?</span><span class="plus">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Bring any documents related to your matter &mdash; notices, complaints, agreements, FIR copies, or correspondence &mdash; along with a valid ID. This helps in giving you an accurate initial assessment.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>How long does a cheque bounce case usually take?</span><span class="plus">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Timelines vary by court workload and case specifics, but Section 138 complaints typically proceed through notice, complaint filing, summons, and trial stages over several months. Settlement at any stage can shorten this considerably.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Can family matters be resolved without going to court?</span><span class="plus">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">In many cases, yes. Mediation and mutual settlement can resolve maintenance, custody, or separation matters without a full trial. Where agreement isn't possible, court proceedings remain available.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>I've received an electricity disconnection or theft notice &mdash; what should I do?</span><span class="plus">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Do not ignore the notice. Note the deadline for response, gather any meter readings, bills, or inspection reports, and seek advice promptly so a timely reply or appearance before the special court can be arranged.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>Do you offer urgent or after-hours assistance?</span><span class="plus">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">For urgent matters such as bail applications, please call directly rather than using the contact form, so the matter can be addressed without delay.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q"><span>What are your consultation fees?</span><span class="plus">+</span></button>
+      <div class="faq-a"><div class="faq-a-inner">Fees depend on the nature and complexity of the matter and are discussed transparently during your first consultation, before any work begins.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="num">Sec. 5</span>
+      <h2>Contact &amp; Office Hours</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="info-block">
+          <span class="label">Office Address</span>
+          <p>Patel Colony 7/3,<br>Jamnagar, Gujarat, India</p>
+        </div>
+        <div class="info-block">
+          <span class="label">Phone</span>
+          <p>98 252 99 787</p>
+        </div>
+        <div class="info-block">
+          <span class="label">Email</span>
+          <p>yaju00@gmail.com</p>
+        </div>
+        <div class="info-block">
+          <span class="label">Office Hours</span>
+          <table class="hours-table">
+            <tr><td>Monday &ndash; Friday</td><td>7:30 PM &ndash; 10:40 PM</td></tr>
+            <tr><td>Saturday</td><td>8:30 PM &ndash; 10:40 PM</td></tr>
+            <tr><td>Sunday</td><td>Closed</td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <form id="contactForm">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="field">
+            <label for="matter">Practice Area</label>
+            <select id="matter" name="matter">
+              <option>Negotiable Instruments / Cheque Bounce</option>
+              <option>Criminal</option>
+              <option>Family</option>
+              <option>Electricity Dispute</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Brief Description</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn primary">Send Enquiry</button>
+          <p class="form-note">Note: this form currently needs a form-handling service (e.g. Formspree) connected to send emails &mdash; see setup notes.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; <span id="year"></span> Yajuvendrasinh Parmar &mdash; Advocate &amp; Legal Consultant, Jamnagar.
+    This website is for informational purposes only and does not constitute legal advice.
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(o => {
+        o.classList.remove('open');
+        o.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // Mobile nav toggle
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+
+  // Contact form (placeholder handler)
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Form submitted (demo only). Connect a form service like Formspree to receive these enquiries by email.');
+  });
+</script>
+
+</body>
+</html>
